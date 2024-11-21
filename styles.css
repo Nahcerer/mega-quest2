@@ -1,0 +1,233 @@
+﻿
+body {
+    background-image: url('pict/nature.jpg'); /* Вкажіть шлях до зображення */
+    background-size: cover; /* Зображення масштабуватиметься, щоб покрити весь фон */
+    background-position: center; /* Центрування зображення */
+    background-repeat: no-repeat; /* Зображення не повторюватиметься */
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden; /* Вимикає зайвий скролінг */
+}
+
+#modal1 {
+    width: 100px; /* Збільшуємо ширину для першого вікна */
+    height: 200px; /* Встановлюємо висоту для першого вікна */
+}
+
+    #modal1 p {
+        margin-top: 5px; /* Зменшуємо відступ зверху, щоб підняти текст вище */
+    }
+
+        #modal1 p:nth-of-type(2) {
+            font-size: 15px;
+            color: #4CAF50; /* Колір тексту */
+            margin-top: 1px;
+        }
+
+
+#modal2 {
+    width: 100px; /* Ширина для другого вікна */
+    height: 200px; /* Висота для другого вікна */
+}
+
+    /* Зміна тексту кнопки при наведенні для другого модального вікна */
+    #modal2 .hover-text:hover::after {
+        content: "I can't read it";
+        color: white; /* Колір тексту при наведенні */
+        font-size: 14px; /* Розмір тексту */
+    }
+
+    #modal2 .hover-text:hover {
+        color: transparent; /* Приховує початковий текст кнопки */
+    }
+
+
+#modal3 {
+    width: 100px; /* Ширина для третього вікна */
+    height: 200px; /* Висота для третього вікна */
+}
+
+    #modal3 p {
+        margin-top: 5px; /* Зменшуємо відступ зверху, щоб підняти текст вище */
+    }
+
+        #modal3 p:nth-of-type(2) {
+            font-size: 15px;
+            color: #333; /* Колір тексту */
+            margin-top: 1px;
+        }
+
+#modal4 {
+    width: 100px; /* Ширина для четвертого вікна */
+    height: 200px; /* Висота для четвертого вікна */
+}
+
+#modal5 {
+    width: 400px; /* Ширина для п’ятого вікна */
+    height: 200px; /* Висота для п’ятого вікна */
+}
+    #modal5 p {
+        margin-top: -10px; /* Зменшуємо відступ зверху, щоб підняти текст вище */
+    }
+
+
+h1 {
+    color: #f1c40f;
+    font-size: 50px;
+    margin-top: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p {
+    color: #333;
+    font-size: 18px;
+    margin: 20px;
+}
+
+/* Контейнер для всіх модальних вікон */
+.modal-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+/* Стилі для кожного модального вікна */
+.modal {
+    position: relative;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .modal p {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .modal input {
+        width: 80%;
+        padding: 10px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .modal:hover {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+/* Модальне вікно, яке буде внизу */
+.bottom-modal {
+    margin-top: 40px;
+    position: fixed;
+    bottom: 50px;
+    left: 49%;
+    transform: translateX(-50%);
+}
+
+.modal-container .modal {
+    flex: 1 1 200px;
+    max-width: 250px;
+}
+
+/* Кнопка підтвердження */
+.modal button {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FF9800;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .modal button:hover {
+        background-color: #FF5722;
+    }
+
+.music-btn {
+    position: fixed;
+    bottom: 1px;
+    right: 5px;
+    background-color: #0a3614;
+    color: #2d9c47;
+    font-size: 15px;
+    border: none;
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .music-btn:hover {
+        background-color: #0a3614;
+    }
+
+.music-toggle {
+    display: none;
+}
+
+
+.corner-icon {
+    position: fixed;
+    bottom: 10px; /* Відстань від нижнього краю */
+    left: 10px; /* Відстань від лівого краю */
+    width: 100px; /* Подвоєна ширина (50px * 2) */
+    height: 100px; /* Подвоєна висота (50px * 2) */
+    cursor: pointer; /* Вказівник при наведенні */
+    transition: transform 0.3s ease; /* Плавний ефект при наведенні */
+}
+
+    /* Зміна зображення при наведенні курсору */
+    .corner-icon:hover {
+        content: url('pict/нефулл_зуб.png'); /* Друге зображення */
+        transform: scale(1.1); /* Легке збільшення при наведенні */
+    }
+
+/* Контейнер для екрану привітання */
+.congrats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Зображення привітання */
+.congrats-image {
+    width: 500px;
+    height: auto;
+    margin-bottom: 1px;
+}
+
+/* Текст "Congratulations" */
+.congrats-text {
+    font-size: 48px;
+    color: #f1c40f;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none;
+}

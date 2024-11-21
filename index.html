@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosi hui</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img src="pict/фул_зуб.png" alt="Icon" class="corner-icon">
+    <!-- Фоновий музичний трек -->
+    <audio id="backgroundMusic">
+        <source src="audio.mp3" type="audio/mp3">
+        Ваш браузер не підтримує елемент
+        <code>audio</code>.
+    </audio>
+
+    <!-- Заголовок -->
+    <h1>Welcome!</h1>
+
+    <!-- Кнопка для вмикання/вимикання музики -->
+    <label for="musicToggle" class="music-btn"> </label>
+    <input type="checkbox" id="musicToggle" class="music-toggle">
+
+    <!-- Модальні вікна -->
+    <div class="modal-container">
+        <!-- Перше модальне вікно з двома полями паролів -->
+        <div class="modal" id="modal1">
+            <p id="firstParagraph">erMso</p>
+            <p id="secondParagraph">Лиш торкнись легенько – і ритм піде швиденько</p> <!-- Додано нове речення -->
+            <input type="text" id="password1" placeholder="Enter first password">
+            <input type="text" id="password1_second" placeholder="Enter second password" disabled>
+            <button id="btn1" onclick="checkPassword(1)">Confirm</button>
+        </div>
+
+
+        <!-- Додано клас "hover-text" для кнопки у другому модальному вікні -->
+        <div class="modal" id="modal2">
+            <p>20-18-5-1-19-21-18-5</p>
+            <input type="text" id="password2" placeholder="Enter password">
+            <button id="btn2" class="hover-text" onclick="checkPassword(2)">Confirm</button>
+        </div>
+
+
+        <div class="modal" id="modal3">
+            <p>Hkcluabyl</p>
+            <p><a href="https://static.1000.menu/res/640/img/content-v2/eb/79/19516/salat-cezar-klassicheskii-s-kuricei_1611309331_16_max.jpg" target="_blank">here)</a></p> <!-- Додано посилання на слово "here" -->
+            <input type="text" id="password3" placeholder="Enter password">
+            <button id="btn3" onclick="checkPassword(3)">Confirm</button>
+        </div>
+
+        <div class="modal" id="modal4">
+            <input type="text" id="password4" placeholder="Enter password">
+            <button id="btn4" onclick="checkPassword(4)">Confirm</button>
+        </div>
+
+        <div class="modal bottom-modal" id="modal5">
+            <p>Щоб закінчити мандрівку, <strong>знайди початок кожної пригоди</strong>.</p>
+            <input type="text" id="password5" placeholder="Enter password">
+            <button id="btn5" onclick="checkPassword(5)">Confirm</button>
+        </div>
+
+
+    </div>
+
+    <script>
+        const correctPasswords = {
+            1: ["Morse", "Skelet"], // Масив для двох паролів
+            2: "Treasure",
+            3: "Adventure",
+            4: "Relic",
+            5: "STAR"
+        };
+
+        let firstPasswordCorrect = false; // Перевірка, чи введено перший пароль
+        let secondPasswordCorrect = false; // Перевірка, чи введено другий пароль
+
+        function checkPassword(index) {
+            const inputField = document.getElementById(`password${index}`);
+            const inputFieldSecond = document.getElementById(`password${index}_second`);
+            const button = document.getElementById(`btn${index}`);
+            let userPassword = inputField.value.trim();
+            let userSecondPassword = inputFieldSecond ? inputFieldSecond.value.trim() : null;
+
+            // Перевірка першого модального вікна
+            if (index === 1 && !firstPasswordCorrect) {
+                if (userPassword === correctPasswords[index][0]) {
+                    firstPasswordCorrect = true;
+
+                    // Приховуємо перший абзац
+                    const firstParagraph = document.getElementById("firstParagraph");
+                    firstParagraph.style.display = "none";
+
+                    // Змінюємо колір другого абзацу
+                    const secondParagraph = document.getElementById("secondParagraph");
+                    secondParagraph.style.color = "black";
+
+                    // Додаємо додаткову логіку для другого пароля
+                    inputField.classList.add("hidden");
+                    inputField.disabled = true;
+                    inputFieldSecond.disabled = false;
+                    inputFieldSecond.focus();
+                    button.innerHTML = "Confirm";
+                } else {
+                    alert("Incorrect first password, try again.");
+                }
+            } else if (index === 1 && firstPasswordCorrect && !secondPasswordCorrect) {
+                if (userSecondPassword === correctPasswords[index][1]) {
+                    secondPasswordCorrect = true;
+                    button.style.backgroundColor = "#4CAF50";
+                    button.innerHTML = "Success";
+                    inputFieldSecond.disabled = true;
+                } else {
+                    alert("Incorrect second password, try again.");
+                }
+            }
+        
+
+            // Перевірка другого і третього модальних вікон
+            else if (index === 2 || index === 3) {
+                if (userPassword === correctPasswords[index]) {
+                    button.style.backgroundColor = "#4CAF50";
+                    button.innerHTML = "Success";
+                    inputField.disabled = true;
+                } else {
+                    alert("Incorrect password, try again.");
+                }
+            }
+            // Перевірка четвертого модального вікна
+            else if (index === 4) {
+                if (userPassword === correctPasswords[index]) {
+                    button.style.backgroundColor = "#4CAF50";
+                    button.innerHTML = "Success";
+                    inputField.disabled = true;
+                } else {
+                    alert("war - 3\ncore - 4\nlamp - 1\nchair - 4\nscroll - 2");
+                }
+            }
+            // Перевірка п'ятого модального вікна
+            else if (index === 5) {
+                if (userPassword === correctPasswords[index]) {
+                    showCongratulationsScreen();
+                } else {
+                    alert("Incorrect password, try again.");
+                }
+            }
+        }
+
+
+        function showCongratulationsScreen() {
+            document.body.innerHTML = ''; // Очищуємо контент сторінки
+            const congratsContainer = document.createElement("div");
+            congratsContainer.classList.add("congrats-container");
+
+            const image = document.createElement("img");
+            image.src = "pict/final.jpg";
+            image.classList.add("congrats-image");
+
+            const text = document.createElement("h1");
+            text.innerText = "Теперь поцелуй меня в пупочек";
+            text.classList.add("congrats-text");
+
+            congratsContainer.appendChild(image);
+            congratsContainer.appendChild(text);
+            document.body.appendChild(congratsContainer);
+        }
+
+
+        const music = document.getElementById("backgroundMusic");
+        const toggleMusic = document.getElementById("musicToggle");
+
+        // Налаштування гучності
+        music.volume = 0.4;
+
+        // Обробка події завершення треку
+        music.addEventListener("ended", () => {
+            console.log("Музика закінчилась.");
+            music.pause();
+            music.currentTime = 0;
+        });
+
+        // Перевіряємо, чи чекбокс вибраний і відповідно вмикаємо/вимикаємо музику
+        toggleMusic.addEventListener("change", () => {
+            if (toggleMusic.checked) {
+                music.currentTime = 0;
+                music.play();
+            } else {
+                music.pause();
+            }
+        });
+    </script>
+
+</body>
+</html>
